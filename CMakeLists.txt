@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.14)
+project(soc C)
+
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lSQLite3 -Wall")
+FIND_LIBRARY(SQLITE3_LIBRARY NAMES sqlite3)
+FIND_PATH(SQLITE3_INCLUDE_DIR NAMES sqlite3.h)
+message(STATUS "${SQLITE3_INCLUDE_DIR}")
+add_executable(${CMAKE_PROJECT_NAME} main.c replies.h database.c database.h includings.h)
+include_directories(${SQLITE3_INCLUDE_DIRS})
+target_link_libraries (${CMAKE_PROJECT_NAME} ${SQLITE3_LIBRARY})
